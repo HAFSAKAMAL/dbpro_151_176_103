@@ -1,0 +1,219 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="DB18Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Admin">
+    <Key>
+      <PropertyRef Name="AdminID" />
+    </Key>
+    <Property Name="AdminID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Email" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Password" Type="nvarchar" MaxLength="32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Feature">
+    <Key>
+      <PropertyRef Name="FeatureID" />
+    </Key>
+    <Property Name="FeatureID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Front Cam" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Back Cam" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Sim" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Ram" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Operating System" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Screen Size" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Frequency" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Battery" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Color" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="ModelID" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="FeedBack">
+    <Key>
+      <PropertyRef Name="FeedBackID" />
+    </Key>
+    <Property Name="FeedBackID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Email" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Message" Type="varchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Images">
+    <Key>
+      <PropertyRef Name="ImageID" />
+    </Key>
+    <Property Name="ImageID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Front" Type="image" Nullable="false" />
+    <Property Name="Back" Type="image" Nullable="false" />
+    <Property Name="Side" Type="image" Nullable="false" />
+    <Property Name="ModelID" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Manufacturer">
+    <Key>
+      <PropertyRef Name="ManufacturerID" />
+    </Key>
+    <Property Name="ManufacturerID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Country" Type="nvarchar" MaxLength="15" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Model">
+    <Key>
+      <PropertyRef Name="ModelID" />
+    </Key>
+    <Property Name="ModelID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Launch Date" Type="date" Nullable="false" />
+    <Property Name="Price" Type="float" Nullable="false" />
+    <Property Name="SeriesID" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="News">
+    <Key>
+      <PropertyRef Name="NewsID" />
+    </Key>
+    <Property Name="NewsID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Details" Type="varchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Outlets">
+    <Key>
+      <PropertyRef Name="OutletID" />
+    </Key>
+    <Property Name="OutletID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ManufacturerID" Type="int" Nullable="false" />
+    <Property Name="Country" Type="nvarchar" MaxLength="15" Nullable="false" />
+    <Property Name="City" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Reviews">
+    <Key>
+      <PropertyRef Name="ReviewID" />
+    </Key>
+    <Property Name="ReviewID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Email" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Rating" Type="float" Nullable="false" />
+    <Property Name="Date" Type="date" Nullable="false" />
+    <Property Name="Opinion" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="ModelID" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Series">
+    <Key>
+      <PropertyRef Name="SeriesID" />
+    </Key>
+    <Property Name="SeriesID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="ManufacturerID" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <Association Name="FK_Feature_Model">
+    <End Role="Model" Type="Self.Model" Multiplicity="1" />
+    <End Role="Feature" Type="Self.Feature" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Model">
+        <PropertyRef Name="ModelID" />
+      </Principal>
+      <Dependent Role="Feature">
+        <PropertyRef Name="ModelID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Images_Model">
+    <End Role="Model" Type="Self.Model" Multiplicity="1" />
+    <End Role="Images" Type="Self.Images" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Model">
+        <PropertyRef Name="ModelID" />
+      </Principal>
+      <Dependent Role="Images">
+        <PropertyRef Name="ModelID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Model_Series">
+    <End Role="Series" Type="Self.Series" Multiplicity="1" />
+    <End Role="Model" Type="Self.Model" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Series">
+        <PropertyRef Name="SeriesID" />
+      </Principal>
+      <Dependent Role="Model">
+        <PropertyRef Name="SeriesID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Outlets_Manufacturer">
+    <End Role="Manufacturer" Type="Self.Manufacturer" Multiplicity="1" />
+    <End Role="Outlets" Type="Self.Outlets" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Manufacturer">
+        <PropertyRef Name="ManufacturerID" />
+      </Principal>
+      <Dependent Role="Outlets">
+        <PropertyRef Name="ManufacturerID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Reviews_Model">
+    <End Role="Model" Type="Self.Model" Multiplicity="1" />
+    <End Role="Reviews" Type="Self.Reviews" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Model">
+        <PropertyRef Name="ModelID" />
+      </Principal>
+      <Dependent Role="Reviews">
+        <PropertyRef Name="ModelID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Series_Manufacturer">
+    <End Role="Manufacturer" Type="Self.Manufacturer" Multiplicity="1" />
+    <End Role="Series" Type="Self.Series" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Manufacturer">
+        <PropertyRef Name="ManufacturerID" />
+      </Principal>
+      <Dependent Role="Series">
+        <PropertyRef Name="ManufacturerID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="DB18ModelStoreContainer">
+    <EntitySet Name="Admin" EntityType="Self.Admin" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Feature" EntityType="Self.Feature" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="FeedBack" EntityType="Self.FeedBack" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Images" EntityType="Self.Images" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Manufacturer" EntityType="Self.Manufacturer" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Model" EntityType="Self.Model" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="News" EntityType="Self.News" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Outlets" EntityType="Self.Outlets" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Reviews" EntityType="Self.Reviews" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Series" EntityType="Self.Series" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_Feature_Model" Association="Self.FK_Feature_Model">
+      <End Role="Model" EntitySet="Model" />
+      <End Role="Feature" EntitySet="Feature" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Images_Model" Association="Self.FK_Images_Model">
+      <End Role="Model" EntitySet="Model" />
+      <End Role="Images" EntitySet="Images" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Model_Series" Association="Self.FK_Model_Series">
+      <End Role="Series" EntitySet="Series" />
+      <End Role="Model" EntitySet="Model" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Outlets_Manufacturer" Association="Self.FK_Outlets_Manufacturer">
+      <End Role="Manufacturer" EntitySet="Manufacturer" />
+      <End Role="Outlets" EntitySet="Outlets" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Reviews_Model" Association="Self.FK_Reviews_Model">
+      <End Role="Model" EntitySet="Model" />
+      <End Role="Reviews" EntitySet="Reviews" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Series_Manufacturer" Association="Self.FK_Series_Manufacturer">
+      <End Role="Manufacturer" EntitySet="Manufacturer" />
+      <End Role="Series" EntitySet="Series" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

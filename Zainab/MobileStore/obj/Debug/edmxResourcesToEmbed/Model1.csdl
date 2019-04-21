@@ -1,0 +1,231 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="DB18Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Admin">
+    <Key>
+      <PropertyRef Name="AdminID" />
+    </Key>
+    <Property Name="AdminID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Password" Type="String" MaxLength="32" FixedLength="false" Unicode="true" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Feature">
+    <Key>
+      <PropertyRef Name="FeatureID" />
+    </Key>
+    <Property Name="FeatureID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Front_Cam" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Back_Cam" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Sim" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Ram" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Operating_System" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Screen_Size" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Frequency" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Battery" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Color" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ModelID" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Model" Relationship="Self.FK_Feature_Model" FromRole="Feature" ToRole="Model" />
+  </EntityType>
+  <EntityType Name="FeedBack">
+    <Key>
+      <PropertyRef Name="FeedBackID" />
+    </Key>
+    <Property Name="FeedBackID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Message" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Image">
+    <Key>
+      <PropertyRef Name="ImageID" />
+    </Key>
+    <Property Name="ImageID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Front" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
+    <Property Name="Back" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
+    <Property Name="Side" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
+    <Property Name="ModelID" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Model" Relationship="Self.FK_Images_Model" FromRole="Images" ToRole="Model" />
+  </EntityType>
+  <EntityType Name="Manufacturer">
+    <Key>
+      <PropertyRef Name="ManufacturerID" />
+    </Key>
+    <Property Name="ManufacturerID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Country" Type="String" MaxLength="15" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Outlets" Relationship="Self.FK_Outlets_Manufacturer" FromRole="Manufacturer" ToRole="Outlets" />
+    <NavigationProperty Name="Series" Relationship="Self.FK_Series_Manufacturer" FromRole="Manufacturer" ToRole="Series" />
+  </EntityType>
+  <EntityType Name="Model">
+    <Key>
+      <PropertyRef Name="ModelID" />
+    </Key>
+    <Property Name="ModelID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Launch_Date" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="Price" Type="Double" Nullable="false" />
+    <Property Name="SeriesID" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Features" Relationship="Self.FK_Feature_Model" FromRole="Model" ToRole="Feature" />
+    <NavigationProperty Name="Images" Relationship="Self.FK_Images_Model" FromRole="Model" ToRole="Images" />
+    <NavigationProperty Name="Series" Relationship="Self.FK_Model_Series" FromRole="Model" ToRole="Series" />
+    <NavigationProperty Name="Reviews" Relationship="Self.FK_Reviews_Model" FromRole="Model" ToRole="Reviews" />
+  </EntityType>
+  <EntityType Name="News">
+    <Key>
+      <PropertyRef Name="NewsID" />
+    </Key>
+    <Property Name="NewsID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Details" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Outlet">
+    <Key>
+      <PropertyRef Name="OutletID" />
+    </Key>
+    <Property Name="OutletID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ManufacturerID" Type="Int32" Nullable="false" />
+    <Property Name="Country" Type="String" MaxLength="15" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="City" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Manufacturer" Relationship="Self.FK_Outlets_Manufacturer" FromRole="Outlets" ToRole="Manufacturer" />
+  </EntityType>
+  <EntityType Name="Review">
+    <Key>
+      <PropertyRef Name="ReviewID" />
+    </Key>
+    <Property Name="ReviewID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Rating" Type="Double" Nullable="false" />
+    <Property Name="Date" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="Opinion" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ModelID" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Model" Relationship="Self.FK_Reviews_Model" FromRole="Reviews" ToRole="Model" />
+  </EntityType>
+  <EntityType Name="Series">
+    <Key>
+      <PropertyRef Name="SeriesID" />
+    </Key>
+    <Property Name="SeriesID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ManufacturerID" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Manufacturer" Relationship="Self.FK_Series_Manufacturer" FromRole="Series" ToRole="Manufacturer" />
+    <NavigationProperty Name="Models" Relationship="Self.FK_Model_Series" FromRole="Series" ToRole="Model" />
+  </EntityType>
+  <EntityType Name="sysdiagram">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <Association Name="FK_Feature_Model">
+    <End Role="Model" Type="Self.Model" Multiplicity="1" />
+    <End Role="Feature" Type="Self.Feature" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Model">
+        <PropertyRef Name="ModelID" />
+      </Principal>
+      <Dependent Role="Feature">
+        <PropertyRef Name="ModelID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Images_Model">
+    <End Role="Model" Type="Self.Model" Multiplicity="1" />
+    <End Role="Images" Type="Self.Image" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Model">
+        <PropertyRef Name="ModelID" />
+      </Principal>
+      <Dependent Role="Images">
+        <PropertyRef Name="ModelID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Outlets_Manufacturer">
+    <End Role="Manufacturer" Type="Self.Manufacturer" Multiplicity="1" />
+    <End Role="Outlets" Type="Self.Outlet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Manufacturer">
+        <PropertyRef Name="ManufacturerID" />
+      </Principal>
+      <Dependent Role="Outlets">
+        <PropertyRef Name="ManufacturerID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Series_Manufacturer">
+    <End Role="Manufacturer" Type="Self.Manufacturer" Multiplicity="1" />
+    <End Role="Series" Type="Self.Series" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Manufacturer">
+        <PropertyRef Name="ManufacturerID" />
+      </Principal>
+      <Dependent Role="Series">
+        <PropertyRef Name="ManufacturerID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Model_Series">
+    <End Role="Series" Type="Self.Series" Multiplicity="1" />
+    <End Role="Model" Type="Self.Model" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Series">
+        <PropertyRef Name="SeriesID" />
+      </Principal>
+      <Dependent Role="Model">
+        <PropertyRef Name="SeriesID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Reviews_Model">
+    <End Role="Model" Type="Self.Model" Multiplicity="1" />
+    <End Role="Reviews" Type="Self.Review" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Model">
+        <PropertyRef Name="ModelID" />
+      </Principal>
+      <Dependent Role="Reviews">
+        <PropertyRef Name="ModelID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="DB18Entities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Admins" EntityType="Self.Admin" />
+    <EntitySet Name="Features" EntityType="Self.Feature" />
+    <EntitySet Name="FeedBacks" EntityType="Self.FeedBack" />
+    <EntitySet Name="Images" EntityType="Self.Image" />
+    <EntitySet Name="Manufacturers" EntityType="Self.Manufacturer" />
+    <EntitySet Name="Models" EntityType="Self.Model" />
+    <EntitySet Name="News" EntityType="Self.News" />
+    <EntitySet Name="Outlets" EntityType="Self.Outlet" />
+    <EntitySet Name="Reviews" EntityType="Self.Review" />
+    <EntitySet Name="Series" EntityType="Self.Series" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+    <AssociationSet Name="FK_Feature_Model" Association="Self.FK_Feature_Model">
+      <End Role="Model" EntitySet="Models" />
+      <End Role="Feature" EntitySet="Features" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Images_Model" Association="Self.FK_Images_Model">
+      <End Role="Model" EntitySet="Models" />
+      <End Role="Images" EntitySet="Images" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Outlets_Manufacturer" Association="Self.FK_Outlets_Manufacturer">
+      <End Role="Manufacturer" EntitySet="Manufacturers" />
+      <End Role="Outlets" EntitySet="Outlets" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Series_Manufacturer" Association="Self.FK_Series_Manufacturer">
+      <End Role="Manufacturer" EntitySet="Manufacturers" />
+      <End Role="Series" EntitySet="Series" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Model_Series" Association="Self.FK_Model_Series">
+      <End Role="Series" EntitySet="Series" />
+      <End Role="Model" EntitySet="Models" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Reviews_Model" Association="Self.FK_Reviews_Model">
+      <End Role="Model" EntitySet="Models" />
+      <End Role="Reviews" EntitySet="Reviews" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
