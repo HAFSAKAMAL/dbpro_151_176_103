@@ -316,7 +316,6 @@
     <Content Include="Views\web.config" />
     <Content Include="packages.config" />
     <Content Include="Views\Shared\_MyLayout.cshtml" />
-    <Content Include="Views\Home\Index.cshtml" />
     <EntityDeploy Include="Model1.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>Model1.Designer.cs</LastGenOutput>
@@ -324,6 +323,7 @@
     <Content Include="Model1.edmx.diagram">
       <DependentUpon>Model1.edmx</DependentUpon>
     </Content>
+    <Content Include="Views\Admins\Index.cshtml" />
     <EntityDeploy Include="Models\Model1.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>Model1.Designer.cs</LastGenOutput>
@@ -331,9 +331,7 @@
     <Content Include="Models\Model1.edmx.diagram">
       <DependentUpon>Model1.edmx</DependentUpon>
     </Content>
-    <Content Include="Views\Home\News.cshtml" />
-    <Content Include="Views\Home\Contact.cshtml" />
-    <Content Include="Views\Home\Outlet.cshtml" />
+    <Content Include="Views\Admins\LogIn.cshtml" />
     <Content Include="Dash\css\bootstrap-theme.css.map" />
     <Content Include="Dash\css\bootstrap-theme.min.css.map" />
     <Content Include="Dash\css\bootstrap.css.map" />
@@ -351,6 +349,7 @@
     <Content Include="Dash\sass\styles.scss" />
     <Content Include="Views\Shared\Details.cshtml" />
     <Content Include="Views\Shared\_MyLayout2..cshtml" />
+    <Content Include="Views\Admins\Add_Details.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
