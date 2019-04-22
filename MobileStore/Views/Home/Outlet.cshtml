@@ -1,0 +1,129 @@
+﻿
+@{
+    ViewBag.Title = "Outlet";
+    Layout = "~/Views/Shared/_MyLayout.cshtml";
+}
+
+
+<div class="content" align="center" >
+
+
+
+
+
+        <h2>
+            <br>
+            <br>Outlet
+        </h2>
+
+
+        <div width ="400" height ="600">
+            <br>
+
+
+
+
+
+            <br><table height="500">
+                <tbody>
+                    <tr class="RowBG1">
+
+                        <td width="94" height="50" class="RowBG2"><strong class="biggerText">&nbsp; Company</strong></td>
+
+
+                        <td width="106" height="50" class="RowBG2">
+                            <select name="company" id="company" onchange="form1.twice.value = 1;form1.Submit.click();">
+
+
+                                <option>Infinix</option>
+                                <option>Advance Telecom</option>
+                                <option>Mobile Zone</option>
+                                <option>United Mobiles</option>
+
+
+                            </select>
+                        </td>
+
+                    </tr>
+
+
+
+
+
+
+
+
+                    <tr class="RowBG2">
+
+                        <td height="50" class="RowBG2"><strong class="biggerText">&nbsp; City</strong></td>
+
+                        <td class="RowBG2">
+                            <select name="city" id="city">
+
+
+                                <option>
+
+                                    Islamabad
+                                </option>
+
+
+                                <option>
+
+                                    Rawalpindi
+                                </option>
+
+
+                                <option>
+
+                                    Faisalabad
+                                </option>
+
+
+                                <option>
+
+                                    Hyderabad
+                                </option>
+
+
+                                <option>
+
+                                    Lahore
+                                </option>
+
+
+                                <option>
+
+                                    Karachi
+                                </option>
+
+
+                            </select>
+                        </td>
+
+                    </tr>
+
+                    
+
+                    <tr>
+
+                        <td colspan="2" align="center" class="RowBG2">
+
+                            <input type="hidden" name="twice" value="0">
+
+                            <input type="submit" name="Submit" value="Go">
+
+                            &nbsp;
+                        </td>
+
+                    </tr>
+                </tbody>
+            </table>
+
+
+
+        </div>
+
+</div>
+
+
+    
