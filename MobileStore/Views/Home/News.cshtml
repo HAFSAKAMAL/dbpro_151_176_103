@@ -1,8 +1,22 @@
-﻿
+﻿@model Example.Models.News
 @{
     ViewBag.Title = "News";
     Layout = "~/Views/Shared/_MyLayout.cshtml";
 }
 
 <h2>News</h2>
+
+<table>
+    <tr>
+        <th>Details</th>
+     
+    </tr>
+    @foreach (var n in Model )
+    {
+        <tr>
+            <td>@n.Details</td>
+        
+        </tr>
+    }
+</table>
 

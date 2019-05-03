@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Schema Namespace="DB18Model1" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+<Schema Namespace="DB18Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
   <EntityType Name="Admin">
     <Key>
       <PropertyRef Name="AdminID" />
@@ -14,6 +14,7 @@
       <PropertyRef Name="FeatureID" />
     </Key>
     <Property Name="FeatureID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Network" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
     <Property Name="Front_Cam" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
     <Property Name="Back_Cam" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
     <Property Name="Sim" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
@@ -21,7 +22,7 @@
     <Property Name="Operating_System" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
     <Property Name="Screen_Size" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
     <Property Name="Frequency" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-    <Property Name="Battery" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Bettery" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
     <Property Name="Color" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
     <Property Name="ModelID" Type="Int32" Nullable="false" />
     <NavigationProperty Name="Model" Relationship="Self.FK_Feature_Model" FromRole="Feature" ToRole="Model" />
@@ -109,16 +110,6 @@
     <NavigationProperty Name="Manufacturer" Relationship="Self.FK_Series_Manufacturer" FromRole="Series" ToRole="Manufacturer" />
     <NavigationProperty Name="Models" Relationship="Self.FK_Model_Series" FromRole="Series" ToRole="Model" />
   </EntityType>
-  <EntityType Name="sysdiagram">
-    <Key>
-      <PropertyRef Name="diagram_id" />
-    </Key>
-    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
-    <Property Name="principal_id" Type="Int32" Nullable="false" />
-    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="version" Type="Int32" />
-    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
-  </EntityType>
   <Association Name="FK_Feature_Model">
     <End Role="Model" Type="Self.Model" Multiplicity="1" />
     <End Role="Feature" Type="Self.Feature" Multiplicity="*" />
@@ -202,7 +193,6 @@
     <EntitySet Name="Outlets" EntityType="Self.Outlet" />
     <EntitySet Name="Reviews" EntityType="Self.Review" />
     <EntitySet Name="Series" EntityType="Self.Series" />
-    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
     <AssociationSet Name="FK_Feature_Model" Association="Self.FK_Feature_Model">
       <End Role="Model" EntitySet="Models" />
       <End Role="Feature" EntitySet="Features" />

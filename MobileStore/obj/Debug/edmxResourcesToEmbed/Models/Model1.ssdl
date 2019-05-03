@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Schema Namespace="DB18Model1.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+<Schema Namespace="DB18Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
   <EntityType Name="Admin">
     <Key>
       <PropertyRef Name="AdminID" />
@@ -14,6 +14,7 @@
       <PropertyRef Name="FeatureID" />
     </Key>
     <Property Name="FeatureID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Network" Type="nvarchar" MaxLength="50" Nullable="false" />
     <Property Name="Front Cam" Type="nvarchar" MaxLength="50" Nullable="false" />
     <Property Name="Back Cam" Type="nvarchar" MaxLength="50" Nullable="false" />
     <Property Name="Sim" Type="nvarchar" MaxLength="50" Nullable="false" />
@@ -21,7 +22,7 @@
     <Property Name="Operating System" Type="nvarchar" MaxLength="50" Nullable="false" />
     <Property Name="Screen Size" Type="nvarchar" MaxLength="50" Nullable="false" />
     <Property Name="Frequency" Type="nvarchar" MaxLength="50" Nullable="false" />
-    <Property Name="Battery" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Bettery" Type="nvarchar" MaxLength="50" Nullable="false" />
     <Property Name="Color" Type="nvarchar" MaxLength="50" Nullable="false" />
     <Property Name="ModelID" Type="int" Nullable="false" />
   </EntityType>
@@ -39,9 +40,9 @@
       <PropertyRef Name="ImageID" />
     </Key>
     <Property Name="ImageID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="Front" Type="image" Nullable="false" />
-    <Property Name="Back" Type="image" Nullable="false" />
-    <Property Name="Side" Type="image" Nullable="false" />
+    <Property Name="Front" Type="varbinary(max)" Nullable="false" />
+    <Property Name="Back" Type="varbinary(max)" Nullable="false" />
+    <Property Name="Side" Type="varbinary(max)" Nullable="false" />
     <Property Name="ModelID" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="Manufacturer">
@@ -96,16 +97,6 @@
     <Property Name="SeriesID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
     <Property Name="ManufacturerID" Type="int" Nullable="false" />
-  </EntityType>
-  <EntityType Name="sysdiagrams">
-    <Key>
-      <PropertyRef Name="diagram_id" />
-    </Key>
-    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
-    <Property Name="principal_id" Type="int" Nullable="false" />
-    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="version" Type="int" />
-    <Property Name="definition" Type="varbinary(max)" />
   </EntityType>
   <Association Name="FK_Feature_Model">
     <End Role="Model" Type="Self.Model" Multiplicity="1" />
@@ -179,7 +170,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <EntityContainer Name="DB18Model1StoreContainer">
+  <EntityContainer Name="DB18ModelStoreContainer">
     <EntitySet Name="Admin" EntityType="Self.Admin" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Feature" EntityType="Self.Feature" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="FeedBack" EntityType="Self.FeedBack" Schema="dbo" store:Type="Tables" />
@@ -190,7 +181,6 @@
     <EntitySet Name="Outlets" EntityType="Self.Outlets" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Reviews" EntityType="Self.Reviews" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Series" EntityType="Self.Series" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
     <AssociationSet Name="FK_Feature_Model" Association="Self.FK_Feature_Model">
       <End Role="Model" EntitySet="Model" />
       <End Role="Feature" EntitySet="Feature" />

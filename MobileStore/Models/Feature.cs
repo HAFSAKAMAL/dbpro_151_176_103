@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace MobileStore.Models
+namespace Example.Models
 {
     using System;
     using System.Collections.Generic;
@@ -15,6 +15,7 @@ namespace MobileStore.Models
     public partial class Feature
     {
         public int FeatureID { get; set; }
+        public string Network { get; set; }
         public string Front_Cam { get; set; }
         public string Back_Cam { get; set; }
         public string Sim { get; set; }
@@ -22,7 +23,7 @@ namespace MobileStore.Models
         public string Operating_System { get; set; }
         public string Screen_Size { get; set; }
         public string Frequency { get; set; }
-        public string Battery { get; set; }
+        public string Bettery { get; set; }
         public string Color { get; set; }
         public int ModelID { get; set; }
     

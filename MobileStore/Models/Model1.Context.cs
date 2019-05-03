@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace MobileStore.Models
+namespace Example.Models
 {
     using System;
     using System.Data.Entity;
@@ -35,6 +35,5 @@ namespace MobileStore.Models
         public virtual DbSet<Outlet> Outlets { get; set; }
         public virtual DbSet<Review> Reviews { get; set; }
         public virtual DbSet<Series> Series { get; set; }
-        public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
     }
 }

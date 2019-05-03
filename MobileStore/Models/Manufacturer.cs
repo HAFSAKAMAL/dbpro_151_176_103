@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace MobileStore.Models
+namespace Example.Models
 {
     using System;
     using System.Collections.Generic;

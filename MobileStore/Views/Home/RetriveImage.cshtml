@@ -1,0 +1,39 @@
+﻿
+@model IEnumerable<Example.Models.Image>
+
+@{
+    ViewBag.Title = "RetriveImage";
+    Layout = "~/Views/Shared/_MyLayout.cshtml";
+}
+
+<h2>RetriveImage</h2>
+
+<table>
+
+    <tr>
+        @foreach (var item in Model)
+        {
+            <td>
+                @{
+                    var base64 = Convert.ToBase64String(item.Front);
+                    var imgsrc = string.Format("data:image/gif;base64,{0}", base64);
+
+                }
+                <img src="@imgsrc" />
+                @{
+                    var Bbase64 = Convert.ToBase64String(item.Back);
+                    var Bimgsrc = string.Format("data:image/gif;base64,{0}", Bbase64);
+
+                }
+                <img src="@Bimgsrc" />
+                @{
+                    var Sbase64 = Convert.ToBase64String(item.Side);
+                    var Simgsrc = string.Format("data:image/gif;base64,{0}", Sbase64);
+
+                }
+                <img src="@Simgsrc" />
+            </td>
+                 }
+    </tr>
+
+</table>

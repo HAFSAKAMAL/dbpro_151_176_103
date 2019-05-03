@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace MobileStore.Models
+namespace Example.Models
 {
     using System;
     using System.Collections.Generic;
@@ -18,7 +18,6 @@ namespace MobileStore.Models
         public string Name { get; set; }
         public string Email { get; set; }
         public string Password { get; set; }
-
-        public string LoginErrorMessage { get; set; }
+        public string LoginErrorMessage { get; internal set; }
     }
 }

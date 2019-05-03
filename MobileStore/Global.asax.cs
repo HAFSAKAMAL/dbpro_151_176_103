@@ -5,7 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
 
-namespace MobileStore
+namespace Example
 {
     public class MvcApplication : System.Web.HttpApplication
     {

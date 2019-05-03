@@ -1,0 +1,49 @@
+﻿@model Example.Models.Manufacturer
+@{
+    if (Session["AdminId"] == null)
+    {
+        Response.Redirect("~/Admins/Login");
+    }
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_MyLayout.cshtml";
+}
+<style type="text/css">
+    .Form-control {
+    }
+</style>
+<br>
+<br>
+<a href="@Url.Action("Logout","Admins")">Logout</a>
+<h1 style="text-align: center">Add Manufucturer</h1>
+
+@*comments *@
+<div height="600" class="container" style="text-align: center">
+    @using (Html.BeginForm("AddManufacturer", "Admins", FormMethod.Post))
+    {
+
+
+        <br>
+        <br>
+        <label for="uname" text-align="center"><b>Name</b></label>
+        <br>
+        <br>
+        @Html.TextBoxFor(model => model.Name, new { @class = "Form-control", @placeholder = "Name" })
+        <br>
+        <br>
+        <label for="psw" text-align="center"><b><br>Country</b></label>
+        <br>
+        <br>
+        @Html.TextBoxFor(model => model.Country, new { @class = "Form-control", @placeholder = "Country" })
+        <br>
+        <br>
+        <button type="submit" align="center">Submit</button>
+    }
+
+</div>
+
+<div height=" 600" class="container" style="text-align: center">
+
+    <br><br><br><br><br><br><br><br><br>
+
+
+</div>
