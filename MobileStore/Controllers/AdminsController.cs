@@ -7,6 +7,10 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using Example.Models;
+using System.IO;
+using System.Web.Services.Description;
+using CrystalDecisions.CrystalReports.Engine;
+using System.Data.Entity.Infrastructure;
 
 namespace Example.Controllers
 {
@@ -49,11 +53,65 @@ namespace Example.Controllers
             }
         }
 
+
+        public ActionResult report()
+        {
+            ReportDocument rd = new ReportDocument();
+            rd.Load(Path.Combine(Server.MapPath("~/Report"), "CrystalReport.rpt"));
+            rd.SetDataSource(db.Features.ToList());
+            Response.Buffer = false;
+            Response.ClearContent();
+            Response.ClearHeaders();
+            try
+            {
+                Stream str = rd.ExportToStream(CrystalDecisions.Shared.ExportFormatType.PortableDocFormat);
+                str.Seek(0, SeekOrigin.Begin);
+                return File(str, "application/pdf", "Feature_list.pdf");
+
+            }
+            catch
+            {
+                throw;
+
+            }
+
+
+        }
+
+        public ActionResult latestmobile()
+        {
+            ReportDocument rd = new ReportDocument();
+            rd.Load(Path.Combine(Server.MapPath("~/Report"), "latestMobile.rpt"));
+            rd.SetDataSource(db.latest_Mobile().ToList());
+            Response.Buffer = false;
+            Response.ClearContent();
+            Response.ClearHeaders();
+            try
+            {
+                Stream str = rd.ExportToStream(CrystalDecisions.Shared.ExportFormatType.PortableDocFormat);
+                str.Seek(0, SeekOrigin.Begin);
+                return File(str, "application/pdf", "Latest_Mobiles.pdf");
+
+            }
+            catch
+            {
+                throw;
+
+            }
+
+        }
+
         public ActionResult Logout()
         {
             int userid = (int)Session["AdminId"];
             Session.Abandon();
             return RedirectToAction("LogIn", "Admins");
+        }
+
+        public ActionResult Details(int? id)
+        {
+            var f = db.Features.SingleOrDefault(c => c.ModelID == id);
+            return View(f);
         }
 
     }

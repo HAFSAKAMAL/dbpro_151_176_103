@@ -341,7 +341,25 @@
     <Content Include="Views\Admins\Authorize.cshtml" />
     <Content Include="Views\Search\Index.cshtml" />
     <Content Include="Views\Admins\Logout.cshtml" />
-    <Content Include="Views\Show\Index.cshtml" />
+    <Content Include="Views\Show\Nokia.cshtml" />
+    <Content Include="Views\Show\Price_Check.cshtml" />
+    <Content Include="Views\Admins\Details_Features.cshtml" />
+    <Content Include="Views\Show\Samsung.cshtml" />
+    <Content Include="Views\Show\QMobile.cshtml" />
+    <Content Include="Views\Show\Huawei.cshtml" />
+    <Content Include="Views\Show\Blackberry.cshtml" />
+    <Content Include="Views\Show\Apple.cshtml" />
+    <Content Include="Views\Show\Lenovo.cshtml" />
+    <Content Include="Views\Show\Oppo.cshtml" />
+    <Content Include="Views\Show\Honor.cshtml" />
+    <Content Include="Views\Show\Vivo.cshtml" />
+    <Content Include="Views\Show\Xiaomi.cshtml" />
+    <Content Include="Views\Show\Price_Check1.cshtml" />
+    <Content Include="Views\Show\Price_Check2.cshtml" />
+    <Content Include="Views\Show\Price_Check3.cshtml" />
+    <Content Include="Views\Show\Price_Check4.cshtml" />
+    <Content Include="Views\Show\Price_Check5.cshtml" />
+    <Content Include="Views\Admins\Show_Details.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
